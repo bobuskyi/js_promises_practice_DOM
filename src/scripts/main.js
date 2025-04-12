@@ -16,6 +16,8 @@ const firstPromise = new Promise((resolve, reject) => {
       isLeftClickPending = false;
       resolve();
     }
+
+    isLeftClickPending = false;
   });
 
   setTimeout(() => {
