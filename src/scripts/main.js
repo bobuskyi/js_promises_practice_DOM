@@ -13,10 +13,9 @@ let isLeftClickPending = true;
 const firstPromise = new Promise((resolve, reject) => {
   document.addEventListener('click', (e) => {
     if (e.button === 0 && isLeftClickPending) {
+      isLeftClickPending = false;
       resolve();
     }
-
-    isLeftClickPending = false;
   });
 
   setTimeout(() => {
@@ -69,13 +68,9 @@ firstPromise
     handleMessage('error', 'First promise was rejected');
   });
 
-secondPromise
-  .then(() => {
-    handleMessage('success', 'Second promise was resolved');
-  })
-  .catch(() => {
-    handleMessage('error', 'First promise was rejected');
-  });
+secondPromise.then(() => {
+  handleMessage('success', 'Second promise was resolved');
+});
 
 thirdPromise.then(() => {
   handleMessage('success', 'Third promise was resolved');
